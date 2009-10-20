@@ -96,6 +96,7 @@ public abstract class Terminal implements ConsoleOperations {
      *  the console.
      */
     public int readCharacter(final InputStream in) throws IOException {
+
         return in.read();
     }
 
@@ -176,5 +177,28 @@ public abstract class Terminal implements ConsoleOperations {
 
     public InputStream getDefaultBindings() {
         return Terminal.class.getResourceAsStream("keybindings.properties");
+    }
+
+    public abstract String getKeyForVirtualKey(int virtualKey);
+
+    public final static int CMD_CLEAR_SCREEN = 1;
+    public final static int CMD_HOME = 2;
+    public final static int CMD_CLEAR_EOL = 3;
+
+
+    public boolean supportsCommand(int cmdCode) {
+        return false;
+    }
+
+    public String getCommand(int cmdCode) {
+        return "";
+    }
+
+    public String getCommand(int cmdCode, int arg1) {
+        return "";
+    }
+
+    public String getCommand(int cmdCode, int arg1, int arg2) {
+        return "";
     }
 }

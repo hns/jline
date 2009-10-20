@@ -88,6 +88,10 @@ To make a bundle and request that ibilio upload it, do:
     <developerConnection>scm:cvs:ext:${maven.username}@jline.cvs.sourceforge.net:/cvsroot/jline:jline</developerConnection>
     <url>http://jline.cvs.sourceforge.net/jline</url>
   </scm>
+  <properties>
+     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>

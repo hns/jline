@@ -95,4 +95,8 @@ public class UnsupportedTerminal extends Terminal {
 
         maskThread = null;
     }
+
+    public String getKeyForVirtualKey(int virtualKey) {
+        return virtualKey != -1 ? String.valueOf(virtualKey) : null;
+    }
 }

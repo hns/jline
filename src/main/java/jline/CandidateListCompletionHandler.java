@@ -71,7 +71,7 @@ public class CandidateListCompletionHandler implements CompletionHandler {
 
     public static void setBuffer(ConsoleReader reader, String value, int offset)
                            throws IOException {
-        while ((reader.getCursorBuffer().cursor > offset)
+        while ((reader.getCursorBuffer().getCursor() > offset)
                    && reader.backspace()) {
             ;
         }

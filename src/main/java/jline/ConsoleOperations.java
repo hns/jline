@@ -25,6 +25,7 @@ public interface ConsoleOperations {
     final char CTRL_D = 4;
     final char CTRL_E = 5;
     final char CTRL_F = 6;
+    final char CTRL_G = 7;
     final static char CTRL_K = 11;
     final static char CTRL_L = 12;
     final char CTRL_N = 14;
@@ -34,6 +35,36 @@ public interface ConsoleOperations {
     final static char CTRL_QM = 127;
 
 
+    final static int SPECIAL = 0x10000;
+    final static int SHIFT   = 0x20000;
+    final static int CTRL    = 0x40000;
+    final static int META    = 0x80000;
+
+    final static int VK_LEFT = SPECIAL + 1;
+    final static int VK_RIGHT = SPECIAL + 2;
+    final static int VK_UP = SPECIAL + 3;
+    final static int VK_DOWN = SPECIAL + 4;
+    final static int VK_HOME = SPECIAL + 5;
+    final static int VK_DELETE = SPECIAL + 6;
+    final static int VK_PAGE_UP = SPECIAL + 7;
+    final static int VK_PAGE_DOWN = SPECIAL + 8;
+    final static int VK_INSERT = SPECIAL + 9;
+    final static int VK_END = SPECIAL + 10;
+    final static int VK_BACKSPACE = SPECIAL + 11;
+
+    // Function keys... .
+    final static int VK_F1 = SPECIAL + 101;
+    final static int VK_F2 = SPECIAL + 102;
+    final static int VK_F3 = SPECIAL + 103;
+    final static int VK_F4 = SPECIAL + 104;
+    final static int VK_F5 = SPECIAL + 105;
+    final static int VK_F6 = SPECIAL + 106;
+    final static int VK_F7 = SPECIAL + 107;
+    final static int VK_F8 = SPECIAL + 108;
+    final static int VK_F9 = SPECIAL + 109;
+    final static int VK_F10 = SPECIAL + 110;
+    final static int VK_F11 = SPECIAL + 111;
+    final static int VK_F12 = SPECIAL + 112;
     /**
      *        Logical constants for key operations.
      */
@@ -272,5 +303,13 @@ public interface ConsoleOperations {
      * Operation that clears whatever text is on the current line.
      */
     final static short CLEAR_LINE = -63;
+
+    /**
+     * Operation that aborts the current command (like searching)
+     */
+    final static short ABORT = -64;
+
+    /** Transpose characters. */
+    final static short TRANSPOSE = -65;
 
 }

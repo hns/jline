@@ -31,6 +31,11 @@ public class TestEditLine extends JLineTestCase {
     public void testMoveToEnd() throws Exception {
         Buffer b = new Buffer("This is a test");
 
+        assertBuffer("This is a Xtest",
+                new Buffer("This is a test")
+                .op(ConsoleReader.PREV_WORD)
+                .append('X'));
+
         assertBuffer("This is a XtestX",
                      new Buffer("This is a test").op(ConsoleReader.PREV_WORD)
                                                  .append('X')

@@ -25,9 +25,9 @@ public class ConsoleReaderTest extends TestCase {
         ConsoleReader consoleReader = new ConsoleReader();
         assertNotNull(consoleReader);
         assertEquals(127, consoleReader
-                .getKeyForAction(ConsoleReader.DELETE_NEXT_CHAR));
+                .getVirtualKeyForAction(ConsoleReader.DELETE_NEXT_CHAR));
         assertEquals(8, consoleReader
-                .getKeyForAction(ConsoleReader.DELETE_PREV_CHAR));
+                .getVirtualKeyForAction(ConsoleReader.DELETE_PREV_CHAR));
     }
 
     public void testReadline() throws Exception {

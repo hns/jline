@@ -36,6 +36,8 @@ public abstract class JLineTestCase extends TestCase {
             console.getHistory().clear();
         }
 
+        //System.out.println("InputBuffer is: " + buffer);
+
         console.setInput(new ByteArrayInputStream(buffer.getBytes()));
 
         // run it through the reader
@@ -46,15 +48,18 @@ public abstract class JLineTestCase extends TestCase {
         assertEquals(expected, console.getCursorBuffer().toString());
     }
 
-    private int getKeyForAction(short logicalAction) {
-        int action = console.getKeyForAction(logicalAction);
+    private String getKeysForAction(short logicalAction) {
+        int vkey = console.getVirtualKeyForAction(logicalAction);
+        String keys = console.getKeyForVirtualKey(vkey);
 
-        if (action == -1) {
+        //System.out.println("got keys " + keys + " for " + logicalAction);
+
+        if (keys == null) {
             fail("Keystroke for logical action " + logicalAction
                     + " was not bound in the console");
         }
 
-        return action;
+        return keys;
     }
 
     /**
@@ -77,24 +82,32 @@ public abstract class JLineTestCase extends TestCase {
             return bout.toByteArray();
         }
 
+        public String toString() {
+            StringBuffer out = new StringBuffer();
+            byte[] bytes = getBytes();
+            for (int i = 0; i < bytes.length; i++)
+                out.append((char) bytes[i]);
+            return out.toString();
+        }
+
         public Buffer op(short operation) {
-            return append(getKeyForAction(operation));
+            return append(getKeysForAction(operation));
         }
 
         public Buffer ctrlA() {
-            return append(getKeyForAction(ConsoleReader.MOVE_TO_BEG));
+            return append(getKeysForAction(ConsoleReader.MOVE_TO_BEG));
         }
 
         public Buffer ctrlU() {
-            return append(getKeyForAction(ConsoleReader.KILL_LINE_PREV));
+            return append(getKeysForAction(ConsoleReader.KILL_LINE_PREV));
         }
 
         public Buffer tab() {
-            return append(getKeyForAction(ConsoleReader.COMPLETE));
+            return append(getKeysForAction(ConsoleReader.COMPLETE));
         }
 
         public Buffer back() {
-            return append(getKeyForAction(ConsoleReader.DELETE_PREV_CHAR));
+            return append(getKeysForAction(ConsoleReader.DELETE_PREV_CHAR));
         }
 
         public Buffer left() {
